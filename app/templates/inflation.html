@@ -21,23 +21,16 @@
         <h1 class="col s12">Инфляция в России</h1>
         <div class="col s12 m8">
           <table border="1" width="100%" cellpadding="5">
-            <!-- Перебираем список с шапкой таблицы -->
              <tr>
                {% for row in csv_reader_keys|first %}
               <th>{{row}}</th>
               {% endfor %}
               </tr>
-             <!-- Перебираем список с значениями инфляции -->
               {% for i in  csv_reader_items%}
              <tr>
                {% for row in i %}
-               <!-- Если значение пустое, то добавляем '-' -->
                {% if row == '' %}
                <td>-</td>
-               <!-- Иначе проверяем на последний элемент массива и присваиваем ему цвет gray
-                    Проверяем на соответвие условия, которые написаны в README.md в 13 строке
-              -->
-              <!-- Меняем в settings LANGUAGE_CODE на en для того чтобы нам отображались не 12,1 а 12.1 -->
                {% else %}
                <td {% if i|last == row %}style="background-color: gray" {% endif %}
                    {% if row < 0 %}style="background-color: darkgreen"{% endif %}
